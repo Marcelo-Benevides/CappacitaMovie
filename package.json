@@ -1,0 +1,22 @@
+{
+  "name": "filmeteste",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "knex": "^0.95.11",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.0",
+    "node": "^16.9.1",
+    "nodemon": "^2.0.12",
+    "sequelize": "^6.6.5",
+    "yup": "^0.32.9"
+  }
+}
