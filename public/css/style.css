@@ -175,60 +175,7 @@ body{
     opacity: 1;
 }
 
-.series-list{
-    width: 100%;
-    height: 250px;
-    margin-top: 40px;
-    position: relative;
-}
 
-.series-category{
-    font-size: 20px;
-    font-weight: 500;
-    margin-bottom: 20px;
-    text-transform: capitalize;
-}
-
-.series-container{
-    width: 100%;
-    height: 200px;
-    display: flex;
-    align-items: center;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-behavior: smooth;
-}
-
-.series-container::-webkit-scrollbar{
-    display: none;
-}
-
-.series{
-    flex: 0 0 auto;
-    width: 24%;
-    height: 200px;
-    text-align: center;
-    margin-right: 10px;
-    cursor: pointer;
-    position: relative;
-}
-
-.series img{
-    width: 100%;
-    height: 170px;
-    object-fit: cover;
-    transition: 1s;
-}
-
-.series p{
-    text-transform: capitalize;
-    height: 20px;
-    overflow: hidden;
-}
-
-.series img:hover{
-    transform:scale(1.1,1.1) ;
-}
 
 
 

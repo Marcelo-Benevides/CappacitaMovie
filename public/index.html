@@ -1,53 +1,86 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cappacita Movie</title>
-
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <!--<link rel="stylesheet" type="text/css" href="./css/cadlogin.css" />-->
+  <link rel="stylesheet" href="css/cadlogin.css">
+  <link rel="stylesheet" href="css/style.css"
 
 </head>
-<body>
 
-    <!-- navbar -->
+<body>
     <nav class="navbar">
         <img src="img/logo.jpg" class="logo" alt="">
         <div class="menu-nav">
-            <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="serie.html">Séries</a></li>
-                <li><a href="teste.html">Filmes</a></li>
-            </ul>
-        </div>
-        <div class="join-box">
-            <button class="btn"><a href="cadastro.html">Logout</a></button>
-
-        </div>
+           
     </nav>
 
-    <!-- Apresentação -->
-    <header class="main">
-        <h1 class="heading">Filmes</h1>
-        <p class="info"> Assista aos melhores filmes</p>
-        <!-- movie list -->
-        <!-- <div class="movie-list">
-            <button class="pre-btn"><img src="img/pre.png" alt=""></button>
-            <h1 class="movie-category">Popular movie</h1>
-            <div class="movie-container">
-                <div class="movie">
-                    <img src="img/poster.jpg" alt="">
-                    <p class="movie-title">movie name</p>
-                </div>
-            </div>
-            <button class="nxt-btn"><img src="img/nxt.png" alt=""></button>
-        </div> -->
-    </header>
+    <h1><br> Sejam bem vindos ao CAPPACITA MOVIES.</h1>
 
-    <script src="js/api.js"></script>
-    <script src="js/scroll.js"></script>
-    <script src="js/home.js"></script>
-    
+  <div class="container" >
+    <a class="links" id="paracadastro"></a>
+    <a class="links" id="paralogin"></a>
+     
+    <div class="content">      
+      <!--FORMULÁRIO DE LOGIN-->
+      <div id="login">
+
+          <form action="/tabela" method="POST">
+            <h1>Login</h1>
+            <label id="labelEmail" for="email">Email</label>
+            <input type="email" name="email" required="required" placeholder="ex. contato@cappac.com"><br><br>
+        
+            <label id="labelSenha" for="senha">Senha</label>
+            <input type="password" name="senha" required="required" placeholder="senha"><br><br>
+        
+           
+          <!--<p> 
+            <input type="checkbox" name="manterlogado" id="manterlogado" value="" /> 
+            <label for="manterlogado">Manter-me logado</label>
+          </p>-->
+            
+            <input type="submit" value="Logar" /> 
+          
+           
+          <p class="link">
+            Ainda não tem conta?
+            <a href="#paracadastro">Cadastre-se</a>
+          </p>
+        </form>
+      </div>
+ 
+      <!--FORMULÁRIO DE CADASTRO-->
+      <div id="cadastro">
+        <form method="post" action="/tabela"> 
+          <h1>Cadastro</h1> 
+           
+          <label id="labelNome" for="nome">Nome</label>
+          <input type="text" name="campo" required="required" placeholder="nome"><br><br>
+
+          <label id="labelEmail" for="email">Email</label>
+          <input type="email" name="email" required="required" placeholder="contato@cappac.com"><br><br>
+           
+          <label id="labelSenha" for="senha">Senha</label>
+          <input type="password" name="senha" required="required" placeholder="ex. abc123"><br><br>  
+
+          <label id="labelcsenha" for="csenha">Confirme a senha</label>
+          <input type="password" name="csenha"><br><br>
+           
+          <p> 
+            <input type="submit" value="Cadastrar"/> 
+          </p>
+           
+          <p class="link">  
+            Já tem conta?
+            <a href="#paralogin"> Ir para Login </a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>  
 </body>
 </html>
+
+

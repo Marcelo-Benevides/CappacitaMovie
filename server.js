@@ -36,9 +36,6 @@ app.get('/', function(req, res, next) {
     
     })
 
-    app.get('/', (req, res) => {
-        res.sendFile(path.join(initial_path, "cadastro.html"));
-    })
 
 app.get('/:id', (req, res) => {
     res.sendFile(path.join(initial_path, "about.html"));
@@ -62,7 +59,7 @@ app.post('/tabela', async (req, res, next) => {
 
             if(result.length > 0){
                 req.session.flag = 1;
-                res.redirect('/');
+                res.redirect('/inicial.hml');
             }else{
                 var hashpassword = bcrypt.hashSync(senha, 10);
                 var sql = 'insert into tabela(campo,email,senha) values(?,?,?);';
@@ -70,14 +67,14 @@ app.post('/tabela', async (req, res, next) => {
                 db.query(sql, [campo, email, hashpassword], function(err, result, fields){
                     if(err) throw err;
                     req.session.flag = 2;
-                    res.redirect('/');
+                    res.redirect('/inicial.html');
 
                 });
             }
         });
     }else{
         req.session.flag = 3;
-        res.redirect('/');
+        res.redirect('/inicial.html');
     }
 
 
@@ -96,10 +93,10 @@ app.post('/login', function(req, res, next){
 
         if(result.length && bcrypt.compareSync(senha, result[0].senha)){
             req.session.email = email;
-            res.redirect('/');
+            res.redirect('/inicial.html');
         }else{
             req.session.flag = 4;
-            res.redirect('/')
+            res.redirect('/inicial.html')
         }
     })
 })
