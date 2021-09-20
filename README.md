@@ -15,8 +15,3 @@ HTML;
 CSS;
 S.O. WINDOWS 10.
 
-
-⚙️ Estrutura do Site
-Na tela inicial é exibida uma lista com os filmes mais populares e tem a opção de realizar buscas dos demais filmes
-Ao clicar em um dos filmes da lista, uma nova tela com os detalhes deste filme e uma lista com filmes recomendados será exibida.
-É possivel enviar comentários gerais sobre os filmes e consultar todos os comentários.
