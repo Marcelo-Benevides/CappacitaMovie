@@ -1,6 +1,6 @@
 const movie_id = location.pathname;
 
-// fetching movie details
+// Detalhes dos filmes
 fetch(`${movie_detail_http}${movie_id}?` + new URLSearchParams({
     api_key: api_key
 }))
@@ -39,7 +39,7 @@ const formatString = (currentIndex, maxIndex) => {
     return (currentIndex == maxIndex - 1) ? '' : ', ';
 }
 
-//fetching cast info
+//Casting
 
 fetch(`${movie_detail_http}${movie_id}/credits?` + new URLSearchParams({
     api_key: api_key
@@ -52,7 +52,7 @@ fetch(`${movie_detail_http}${movie_id}/credits?` + new URLSearchParams({
     }
 })
 
-// fetching video clips
+// Videos
 
 fetch(`${movie_detail_http}${movie_id}/videos?` + new URLSearchParams({
     api_key: api_key
@@ -70,7 +70,7 @@ fetch(`${movie_detail_http}${movie_id}/videos?` + new URLSearchParams({
     }
 })
 
-// fetch recommendations
+// recomendações
 
 fetch(`${movie_detail_http}${movie_id}/recommendations?` + new URLSearchParams({
     api_key: api_key

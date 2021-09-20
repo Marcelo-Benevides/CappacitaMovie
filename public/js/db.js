@@ -1,28 +1,16 @@
-const {databaseconnection} = require ('./conexao')
+var mysql = require('mysql2');
 
-async function cadastrar(registration){
-    const insertdados = {
-        campo: registration.campo,
-        email: registration.email,
-        senha: registration.senha,
-        
-        
-    }
+var db = mysql.createConnection({
+    host : 'localhost',
+    user : 'root',
+    password : 'Marcelo83',
+    database : 'teste1'
+});
 
-    const result = await databaseconnection('tabela').insert(insertdados)
+db.connect((err) => {
+    if(err) throw err;
+    console.log('Database conectada');
+})
 
-    if(result) {
-        return {
-            
-            campo: registration.campo,
-            email: registration.email,
-            senha: registration.senha,
-            
-            id: result[0],
-        }
-    }else {
-        console.log("deu erro")
-    }
-}
 
-module.exports = {cadastrar}
+module.exports = {db}

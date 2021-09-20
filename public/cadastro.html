@@ -1,31 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <!--<link rel="stylesheet" type="text/css" href="./css/cadlogin.css" />-->
+  <link rel="stylesheet" href="css/cadlogin.css">
+  <link rel="stylesheet" href="css/style.css"
+  
 </head>
+
 <body>
-    <h1> Formularo Cadastro </h1>
+    <nav class="navbar">
+        <img src="img/logo.jpg" class="logo" alt="">
+        <div class="menu-nav">
+           
+    </nav>
 
-<form action="/tabela" method="POST">
-    <label>NOME</label>
-    <input type="text" name="campo"><br><br>
+  <div class="container" >
+    <a class="links" id="paracadastro"></a>
+    <a class="links" id="paralogin"></a>
+     
+    <div class="content">      
+      <!--FORMULÁRIO DE LOGIN-->
+      <div id="login">
 
-    <label>Email</label>
-    <input type="text" name="email"><br><br>
+          <form action="/tabela" method="POST">
+            <h1>Login</h1>
+            <label id="labelEmail" for="email">Email</label>
+            <input type="email" name="email" required="required" placeholder="ex. contato@cappac.com"><br><br>
+        
+            <label id="labelSenha" for="senha">Senha</label>
+            <input type="password" name="senha" required="required" placeholder="senha"><br><br>
+        
+           
+          <!--<p> 
+            <input type="checkbox" name="manterlogado" id="manterlogado" value="" /> 
+            <label for="manterlogado">Manter-me logado</label>
+          </p>-->
+            
+            <input type="submit" value="Logar" /> 
+          
+           
+          <p class="link">
+            Ainda não tem conta?
+            <a href="#paracadastro">Cadastre-se</a>
+          </p>
+        </form>
+      </div>
+ 
+      <!--FORMULÁRIO DE CADASTRO-->
+      <div id="cadastro">
+        <form method="post" action="/tabela"> 
+          <h1>Cadastro</h1> 
+           
+          <label id="labelNome" for="nome">Nome</label>
+          <input type="text" name="campo" required="required" placeholder="nome"><br><br>
 
-    <label>VALOR</label>
-    <input type="text" name="senha"><br><br>
+          <label id="labelEmail" for="email">Email</label>
+          <input type="email" name="email" required="required" placeholder="contato@cappac.com"><br><br>
+           
+          <label id="labelSenha" for="senha">Senha</label>
+          <input type="password" name="senha" required="required" placeholder="ex. abc123"><br><br>  
 
-
-
-    <button type="submit">CADASTRAR</button>
-
-</form>
-
-<!--<script src="js/db.js"></script>-->
-
+          <label id="labelcsenha" for="csenha">Confirme a senha</label>
+          <input type="password" name="csenha"><br><br>
+           
+          <p> 
+            <input type="submit" value="Cadastrar"/> 
+          </p>
+           
+          <p class="link">  
+            Já tem conta?
+            <a href="#paralogin"> Ir para Login </a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>  
 </body>
 </html>
+
+

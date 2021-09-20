@@ -1,28 +1,44 @@
-
 const express = require('express');
 const bodyparser = require('body-parser')
-//const mysql = require("mysql")
+const { db } = require('./public/js/db')
 const path = require('path');
-//const cadastro = require('./models/db');
-/*const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Marcelo83',
-    database: 'login',
-})*/
 const initial_path = path.join(__dirname, "public");
 const app = express();
-const db = require('./public/js/db');
 const { databaseconnection } = require('./public/js/conexao');
 const yup = require('yup');
+const session = require('express-session');
+const bcrypt = require('bcrypt');
+
+
+app.use(session({
+    secret: 'ABCDefg',
+    resave: false,
+    saveUninitialized : true
+}));    
+
+
+
+
+
 
 app.use(express.static(initial_path));
 
 app.use(bodyparser.urlencoded ({extended: false}))
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(initial_path, "index.html"));
-})
+
+
+app.get('/', function(req, res, next) {   
+   
+    if(req.session.flag == 1){
+        res.sendFile({ message : "email em uso" , flag : 1});
+        
+    }
+    
+    })
+
+    app.get('/', (req, res) => {
+        res.sendFile(path.join(initial_path, "cadastro.html"));
+    })
 
 app.get('/:id', (req, res) => {
     res.sendFile(path.join(initial_path, "about.html"));
@@ -30,53 +46,67 @@ app.get('/:id', (req, res) => {
 
 
 
-app.post('/tabela', async (req, res) => {
-   /*const cadastrando = await db.cadastrar ({
-        campo: req.body.campo,
-        email: req.body.email,
-        senha: req.body.senha,
+app.post('/tabela', async (req, res, next) => {
+
+    var campo = req.body.campo;
+    var email = req.body.email;
+    var senha = req.body.senha;
+    var csenha = req.body.csenha;
+
+    if(csenha == senha){
         
-    })/*.then(function(){
-        // res.redirect('/')*/
-     //})
+        var sql = 'select * from tabela where email = ?;';
 
-    //res.send(cadastrando) 
-    const testing = yup.object().shape({
-        campo: yup.string("erro: prencher o campo nome")
-        .required("erro: necessario prencher o campo nome"),
-        email: yup.string("Erro: necessario prencher o campo email")
-        .required("Erro: necessario prenche o campo email")
-        .email("Erro: necessario preencher o campo com email valido"),
-        senha: yup.string("Erro: necessario prencher o campo senha")
-        .required("Erro: necessario prencher o campo senha")
-        .min(6, "Erro: a senha deve ter no minimo 6 caracteres")
-    });
+        db.query(sql,[email], function(err, result, fields){
+            if(err) throw err;
 
-    try{
-        await testing.validate(req.body);
-    }catch(err){
+            if(result.length > 0){
+                req.session.flag = 1;
+                res.redirect('/');
+            }else{
+                var hashpassword = bcrypt.hashSync(senha, 10);
+                var sql = 'insert into tabela(campo,email,senha) values(?,?,?);';
 
-        return res.status(400).json({   
-            erro: true,
-            mensagem: err.errors
-        })
-    } 
-   if (erro = false){
-       res.redirect('/')
+                db.query(sql, [campo, email, hashpassword], function(err, result, fields){
+                    if(err) throw err;
+                    req.session.flag = 2;
+                    res.redirect('/');
+
+                });
+            }
+        });
+    }else{
+        req.session.flag = 3;
+        res.redirect('/');
     }
+
+
+     })
+
+
+app.post('/login', function(req, res, next){
+
+    var email = req.body.email;
+    var senha = req.body.senha;
+
+    var sql = 'select * from tabela where email = ?;';
+
+    db.query(sql,[email], function(err,result, fields){
+        if(err) throw err;
+
+        if(result.length && bcrypt.compareSync(senha, result[0].senha)){
+            req.session.email = email;
+            res.redirect('/');
+        }else{
+            req.session.flag = 4;
+            res.redirect('/')
+        }
     })
+})
 
 
-
-
-
-
-//res.send("Nome: " + req.body.nome + "<br>Valor: " + req.body.valor + "<br>")
-
-/*app.use((req, res) => {
-    res.json("404");
-})*/
 
 app.listen(3000, () => {
     console.log('listening on port 3000......');
+
 })
